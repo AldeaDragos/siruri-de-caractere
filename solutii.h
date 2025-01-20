@@ -1,397 +1,230 @@
-﻿#include "teorie.h"
+﻿#include "exercitii.h"
 
 
-//PROBLEMA 1 a.
-														// Ana are mere 
-														// i=poz;i<12; x[i]=x[i+1] ;i++  x[strlen(x)]-1
-void eliminareCaracter(char* x,int pozitia) {       // i=7; i<12 x[7]=x[8] =>7=" " => Ana ar   
-														// i=8; i<12 x[8]=x[9] =>" " =m => Ana ar m 
-	
-	x[pozitia] = '\0';
+//Sa se elimine spptiile multiple dintre cuvinte.
+
+void sol1() {
+
+	char x[100] = "Ana  are   mere";
 
 
-	char p1[100] = "";
+	eliminareSpatiiMultiple(x);
 
-	strcpy(p1, x);
-
-	char p2[100] = "";
-
-	strcpy(p2, x + pozitia + 1);
-
-
-	strcat(p1, p2);
-
-
-	strcpy(x, p1);
+	cout << x << endl;
 
 }
 
-void eliminareSpatillMultiple(char*x ,int a,int b) {
+//Sa se transforme prima litera din ficcare cuvant in litera mare si sa se inlocuiasca ultima litera din fiecare cuvant cu urmatoarea de dupa ca din alfabet
 
-	x[a] = '\0';
+void sol2() {
 
-	x[b] = '\0';
+	char x[100] = "Ana are mere";
 
-	char p1[100] = "";
 
-	strcpy(p1, x);
+	transformaLitera(x);
 
-	char p2[100] = "";
-
-	strcpy(p2, x + b + 1);
-
-	strcat(p1, p2);
-
-	strcpy(x, p1);
+	cout << x << endl;
 
 }
 
-//1.b
+//Dublati toate vocalele mari si stergeti toate vocalele mici.
 
 
-void transformaLitera(char* x) {
+//void sol3() {
+//
+//	char x[100] = "AnA arE mere";
+//
+//
+//	dubleazaVocaleMariStergiMici(x);
+//
+//	cout << x << endl;
+//
+//}
 
-	char* cuvant = strtok(x, " ");
+//Realizati suma tuturor cifrelor din sir.
 
-	while (cuvant) {
 
-		int lungime = strlen(cuvant);
+void sol4() {
 
-		if (lungime > 0) {
+	char x[100] = "Ana are 3 mere si 4 pere";
 
-			cuvant[0] = toupper(cuvant[0]);
-			cuvant[lungime - 1] = cuvant[lungime - 1 - 1];
-		}
-		cuvant = strtok(NULL, " ");
-	}
-}
-
-//1.c
-
-void dubleazaVocaleMariStergiMici(char* x) {
-
-	char rezultat[200] = " ";
-
-	int ct = 0;
-
-	for (int i = 0; x[i]; i++) {
-
-		if (strchr("aeiou", x[i])) {
-
-			continue;
-
-		}
-		else if (strchr("AEIOU", x[i])) {
-
-			rezultat[ct++] = x[i];
-			rezultat[ct++] = x[i];
-
-		}
-		else {
-			rezultat[ct++] = x[i];
-		}
-
-	}
-	rezultat[ct] = '\0';
-	strcpy(x, rezultat);
+	cout << sumaCifrelor(x);
 
 }
 
-//1.d
+//Sa se verifice de cate ori apare ultimul cuvant in tot sirul
 
-int sumaCifrelor(char* x) {
 
-	int suma = 0;
+void sol5() {
 
-	for (int i = 0; x[i]; i++) {
+	char x[100] = "Ana are 3 mere si 4 pere si inca 10 mere";
 
-		if (isdigit(x[i])) {
-			suma += x[i]-'0';
-		}
-
-	}
-	return suma;
-}
-
-//1.e
-
-int aparitiiUltimulCuvant(char* x) {
-
-	char* ultimulCuvant = strrchr(x, ' ');
-
-	if (!ultimulCuvant) {
-		ultimulCuvant = x;
-	}
-	else {
-		ultimulCuvant++;
-	}
-
-	cout << ultimulCuvant << endl;
-
-	int ct = 0;
-
-	char* cuvant = strtok(x, " ");
-
-	while (cuvant) {
-
-		if (strcmp(cuvant, ultimulCuvant) == 0) {
-			ct++;
-		}
-		cuvant = strtok(NULL, " ");
-	}
-	return ct;
-}
-
-//1.f
-
-void oglindaSir(char* x){
-
-	int lungime = strlen(x);
-
-	for (int i = 0; i < lungime / 2; i++) {
-
-		swap(x[i], x[lungime - i - 1]);
-
-	}
+	cout << aparitiiUltimulCuvant(x);
 
 }
 
+//Interschimbati elementele sirului in oglinda fata de mijloe
 
-//1.g
 
-void numaraLitereMiciSiConosnae(char* x, int& litereMici, int& consoane) {
+void sol6() {
 
-	litereMici = 0;
-	consoane = 0;
+	char x[100] = "Ana are 3 mere si 4 pere si inca 10 mere";
 
-	for (int i = 0; x[i]; i++) {
+	oglindaSir(x);
 
-		if (islower(x[i])) {
-			litereMici++;
-		}
-		if (!strchr("aeiou", x[i])) {
-			consoane++;
-		}
-
-	}
+	cout << x << endl;
 }
 
-//2.a
+//Cate litere mici avem? Sunt toate literele consoane?
 
-int estePalindrom( char* cuvant) {
 
-	int lungime = strlen(cuvant);
+void sol7() {
 
-	for (int i = 0; i < lungime / 2; i++) {
+	char x[100] = "Ana are 3 Mere si 4 Pere si inca 10 Mere";
 
-		if (cuvant[i] != cuvant[lungime - i - 1]) {
-			return false;
-		}
+	cout << numaraLitereMici(x);
 
-	}
-	return true;
-}
-
-void construirePropPolindroame( char* x, char* rezultat) {
-
-	rezultat[0] = '\0';
-
-	char cuvant[100];
-	int ct = 0;
-
-	for (int i = 0; x[i] != '\0'; i++) {
-		if (strchr(" !/,.;", x[i])) {
-			if (ct > 0) {
-
-				cuvant[ct] = '\0';
-				if (estePalindrom(cuvant)) {
-					strcat(rezultat, cuvant);
-					strcat(rezultat, " ");
-				}
-				ct = 0;
-			}
-		}
-		else {
-			cuvant[ct++] = x[i];
-		}
-	}
-}
-
-//2.b
-
-void cuvantMaxVocale(char* x, char* rezultat) {
-
-	char cuvant[100];
-	int maxVocale = 0;
-	rezultat[0] = '0';
-	int ct = 0;
-
-	for (int i = 0; x[i]; i++) {
-		if (strchr(" !?,.;", x[i])) {
-
-			if (ct > 0) {
-
-				cuvant[ct] = '0';
-				int nrVocale = 0;
-				for (int k = 0; k < ct; k++) {
-					if (strchr("aeiouAEIOU", cuvant[k])) {
-						nrVocale++;
-					}
-				}
-				if (nrVocale > maxVocale) {
-					maxVocale = nrVocale;
-					strcpy(rezultat, cuvant);
-				}
-				ct = 0;
-			}
-		}
-		else {
-			cuvant[ct++] = x[i];
-		}
-
-	}
-}
-
-//2.e
-
-void alTreileaCuvant(char* x) {
-
-	char cuvant[100];
-
-	int ct = 0;
-	int numarCuvinte = 0;
-
-	for (int i = 0; x[i] != '\0'; i++) {
-
-		if (strchr(" !/,.;", x[i])) {
-			if (ct > 0) {
-				cuvant[ct] = '\0';
-				numarCuvinte++;
-				if (numarCuvinte == 3) {
-					cout << cuvant << endl;
-				}
-				ct = 0;
-			}
-			
-		}
-		else {
-			cuvant[ct++] = x[i];
-		}
-
-	}
-
-	if (numarCuvinte < 3) {
-		cout << "Șirul nu are cel puțin 3 cuvinte!" << endl;
-	}
 
 }
 
-//2.f
+//2.Se citeste un sir de maxim 200 de caractere, cuvinte separate prin separatorii ",!?; ".
 
-void stergeCuvinte5Litere(char* x, char* rezultat) {
+//Realizati un nou sir cu toate cuvintele palindrome.
 
-	rezultat[0] = '\0';
+void sol8() {
 
-	char cuvant[100];
-	int ct = 0;
+	char x[100] = "ana are un cojoc si un rotator";
 
-	for (int i = 0; x[i] != '\0'; i++) {
+	construirePropPolindroame(x);
 
-		if (strchr(" !/,.;", x[i])) {
-			if (ct > 0) {
-
-				cuvant[ct]='\0';
-				if (!(strlen(cuvant) == 5 && cuvant[0] == cuvant[4])) {
-					strcat(rezultat,cuvant);
-					strcat(rezultat," ");
-				}
-				ct=0;
-
-			}
-		}
-		else {
-			cuvant[ct++] = x[i];
-		}
+	cout <<x << endl;
+}
+//Afisati cuvantul ce are cele mai multe vocale.
 
 
-	}
+void sol9() {
+
+	char x[100] = "ana frumoasa are un cojoc si un rotator";
+
+	cuvantMaxVocale(x);
+
+	cout << x << endl;
 }
 
+// Modificati sirul citit astfel incat sa stergeti toate cuvintele ce au mai putin de 4 caractere.
 
-//2.g
 
-void schimbareUltimaCifraMicaInLitMare(char* x, char* rezultat) {
+void sol10() {
 
-	rezultat[0] = '\0';
+	char x[100] = "Ana are cojoc si pe langa asta mai are si un rotator";
 
-	char cuvant[100];
-	int ct = 0;
 
-	for (int i = 0; x[i] != '\0'; i++) {
+	stergereCuvinteSub4Litere(x);
 
-		if (strchr(" !/,.;", x[i])) {
-			if (ct > 0) {
+	cout << x << endl;
 
-				cuvant[ct] = '\0';
-
-				int lungime = strlen(cuvant);
-
-				for (int k = lungime-1; k >= 0; k--) {
-
-					if (cuvant[k] = toupper(cuvant[k])) {
-
-						strcat(rezultat, cuvant);
-
-						strcat(rezultat, " ");
-
-						break;
-					}
-				}
-				ct = 0;
-
-			}
-		}
-		else {
-			cuvant[ct++] = x[i];
-		}
-	}
-}
-
-//3.a
-
-void eliminareToateSpatiileMultiple(char* x) {
-
-	int ct = 0;
-
-	for (int i = 0; x[i] != '\0'; i++) {
-
-		if (x[i] == ' ') {
-
-		}
-
-	}
 
 }
 
-//3.e
+// Care este al treilea cuvant citit? Daca sirul nu are cel putin 3 cuvinte se va afisa un mesaj.
 
-void stergereLitereCSiDublareD(char* x) {
 
-	char rezultat[200] = "";
-	for (int i = 0; x[i] != '\0'; i++) {
+void sol11() {
 
-		if (x[i] == 'C' || x[i] == 'c') {
-			continue;
-		}
-		else if (x[i] == 'D' || x[i] == 'd') {
-			strncat(rezultat, &x[i], 1);
-			strncat(rezultat, &x[i], 1);
-		}
-		else {
-			strncat(rezultat, &x[i], 1);
-		}
+	char x[100] = "Ana are cazac si un civic";
 
-	}
+	alTreileaCuvant(x);
 
-	strcpy(x, rezultat);
+	cout << x << endl;
+
+
+}
+
+//Stergeti cuvintele de exact 5 litere ce au prima si ultima litera identica.
+
+
+void sol12() {
+
+	char x[100] = "Ana are un cazac si un civic";
+
+	stergeCuvinte5Litere(x);
+
+	cout << x << endl;
+
+
+}
+
+//Dublati grupurile de 3 litere identice.
+
+// Transformati ultima litera din fiecare cuvant (doar daca este litera mica) in litera mare
+void sol14() {
+
+	char x[100] = "Ana are mere , pere si struguri";
+
+	schimbareUltimaLitMicaInLitMare(x);
+
+	cout << x << endl;
+
+}
+
+//3. Se citeste un sir de maxim 100 de cuvinte de la tastatura, separate prin unul sau mai multe spatii.
+
+// Sa se stearga toate spatiile multiple.
+
+
+void sol15() {
+
+	char x[100] = "Ana  doreste  un cazac si    un civic";
+
+	eliminareToateSpatiileMultiple(x);
+
+	cout << x << endl;
+}
+
+// Sa se faca prima litera din fiecare cuvant mare si sa se inlocuiasca ultima litera cu urmatoarea din alfabet.
+
+
+void sol16() {
+
+	char x[100] = "Ana are o livada plina de mere si pere";
+
+	primaLiteraMareSiUltimLiteraSchimbata(x);
+
+	cout << x<< endl;
+}
+
+// Sa se inverseze toate cuvintele din sir ce NU sunt palindrome.
+
+
+void sol17() {
+
+	char x[100] = "Ana se plimba rar pe afara cu ajutorul rolelor ";
+
+	inversareCuvinteSirCeNuSuntPalindroame(x);
+
+	cout << x << endl;
+
+}
+
+//Realizati un nou sir in care sa se puna toate cuvinte care au freeventa singulara in sir. (singular - care apar doar o singura data in sirul citit)
+
+void sol18() {
+
+	char x[100] = "Ana are o livada plina de mere si mai are o livada plina de pere";
+
+	//inversareOrdineCuvinte(x);
+
+	cout << x << endl;
+}
+
+
+// Stergeti toate literele C si dublati toate literele D. (C si D - un caracter citit de la tastatura)
+
+void sol19() {
+
+	char x[100] = "cadouri de Craciun";
+
+	stergeCSiDubleazaLiteraD(x);
+
+	cout << x << endl;
 }

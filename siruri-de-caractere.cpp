@@ -1,8 +1,8 @@
 
-#include "exercitii.h"
+#include "solutii.h"
 
 int main() {
-  
-	sol14();
+	
+	sol19();
 
 }

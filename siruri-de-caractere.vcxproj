@@ -130,9 +130,10 @@
     <ClCompile Include="siruri-de-caractere.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="solutii.h" />
-    <ClInclude Include="teorie.h" />
     <ClInclude Include="exercitii.h" />
+    <ClInclude Include="teorie.h" />
+    <ClInclude Include="solutii.h" />
+    <ClInclude Include="varianteBac.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

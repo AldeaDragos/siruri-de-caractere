@@ -23,10 +23,13 @@
     <ClInclude Include="teorie.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="solutii.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="exercitii.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="solutii.h">
+    <ClInclude Include="varianteBac.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
